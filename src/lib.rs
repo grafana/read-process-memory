@@ -394,11 +394,11 @@ mod platform {
     use std::process::Child;
     use std::ptr;
 
-    use winapi::shared::minwindef::{FALSE, DWORD, LPVOID};
-    use winapi::shared::basetsd::{SIZE_T};
-    use winapi::um::winnt::{PROCESS_VM_READ};
-    use winapi::um::processthreadsapi::{OpenProcess};
-    use winapi::um::memoryapi::{ReadProcessMemory};
+    use self::winapi::shared::minwindef::{FALSE, DWORD, LPVOID};
+    use self::winapi::shared::basetsd::{SIZE_T};
+    use self::winapi::um::winnt::{PROCESS_VM_READ};
+    use self::winapi::um::processthreadsapi::{OpenProcess};
+    use self::winapi::um::memoryapi::{ReadProcessMemory};
 
     use super::{CopyAddress};
 
