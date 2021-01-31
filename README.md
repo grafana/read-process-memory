@@ -5,7 +5,7 @@ A crate to read memory from another process. Code originally taken from Julia Ev
 # Example
 
 ```rust, no_run
-extern crate read_process_memory;
+extern crate benfred_read_process_memory as read_process_memory;
 
 use std::convert::TryInto;
 use std::io;

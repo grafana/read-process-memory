@@ -1,5 +1,5 @@
 extern crate libc;
-extern crate read_process_memory;
+extern crate benfred_read_process_memory as read_process_memory;
 
 use read_process_memory::*;
 use std::convert::TryInto;

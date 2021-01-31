@@ -14,7 +14,7 @@
 //! ```rust,no_run
 //! # use std::convert::TryInto;
 //! # use std::io;
-//! use read_process_memory::*;
+//! use benfred_read_process_memory::*;
 //!
 //! # fn foo(pid: Pid, address: usize, size: usize) -> io::Result<()> {
 //! let handle: ProcessHandle = pid.try_into()?;
@@ -47,7 +47,7 @@ pub use platform::Pid;
 /// ```rust,no_run
 /// use std::convert::TryInto;
 /// use std::io;
-/// use read_process_memory::*;
+/// use benfred_read_process_memory::*;
 ///
 /// fn pid_to_handle(pid: Pid) -> io::Result<ProcessHandle> {
 ///   Ok(pid.try_into()?)
