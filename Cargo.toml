@@ -16,7 +16,6 @@ mach = "0.3.2"
 
 [target.'cfg(windows)'.dependencies]
 winapi = "0.3"
-kernel32-sys = "0.2"
 
 [dev-dependencies]
 docmatic = "0.1"
