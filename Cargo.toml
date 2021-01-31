@@ -8,14 +8,14 @@ homepage = "https://github.com/benfred/read-process-memory"
 repository = "https://github.com/benfred/read-process-memory"
 
 [dependencies]
-libc = "0.2.34"
-log = "0.4.6"
+libc = "0.2"
+log = "0.4"
 
 [target.'cfg(target_os="macos")'.dependencies]
-mach = "0.1.2"
+mach = "0.3.2"
 
 [target.'cfg(windows)'.dependencies]
-winapi = "0.2"
+winapi = "0.3"
 kernel32-sys = "0.2"
 
 [dev-dependencies]
