@@ -15,7 +15,7 @@ log = "0.4"
 mach = "0.3.2"
 
 [target.'cfg(windows)'.dependencies]
-winapi = "0.3"
+winapi = "0.2"
 
 [dev-dependencies]
 docmatic = "0.1"
