@@ -386,6 +386,7 @@ mod platform {
 #[cfg(windows)]
 mod platform {
     extern crate winapi;
+    extern crate kernel32;
 
     use std::convert::TryFrom;
     use std::io;
@@ -394,16 +395,10 @@ mod platform {
     use std::process::Child;
     use std::ptr;
 
-    use self::winapi::shared::minwindef::{FALSE, DWORD, LPVOID};
-    use self::winapi::shared::basetsd::{SIZE_T};
-    use self::winapi::um::winnt::{PROCESS_VM_READ};
-    use self::winapi::um::processthreadsapi::{OpenProcess};
-    use self::winapi::um::memoryapi::{ReadProcessMemory};
-
     use super::{CopyAddress};
 
     /// On Windows a `Pid` is a `DWORD`.
-    pub type Pid = DWORD;
+    pub type Pid = winapi::DWORD;
     /// On Windows a `ProcessHandle` is a `HANDLE`.
     #[derive(Copy, Clone, Eq, PartialEq, Hash)]
     pub struct ProcessHandle(pub RawHandle);
@@ -414,7 +409,7 @@ mod platform {
 
         fn try_from(pid: Pid) -> io::Result<Self> {
             let handle = unsafe {
-                OpenProcess(PROCESS_VM_READ, FALSE, pid)
+                kernel32::OpenProcess(winapi::winnt::PROCESS_VM_READ, winapi::FALSE, pid)
             };
             if handle == (0 as RawHandle) {
                 Err(io::Error::last_os_error())
@@ -441,12 +436,12 @@ mod platform {
             }
 
             if unsafe {
-                ReadProcessMemory(self.0,
-                                  addr as LPVOID,
-                                  buf.as_mut_ptr() as LPVOID,
-                                  mem::size_of_val(buf) as SIZE_T,
-                                  ptr::null_mut())
-            } == FALSE {
+                kernel32::ReadProcessMemory(self.0,
+                                            addr as winapi::LPVOID,
+                                            buf.as_mut_ptr() as winapi::LPVOID,
+                                            mem::size_of_val(buf) as winapi::SIZE_T,
+                                            ptr::null_mut())
+            } == winapi::FALSE {
                 Err(io::Error::last_os_error())
             } else {
                 Ok(())
